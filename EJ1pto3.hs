@@ -50,14 +50,16 @@ q x = x+2
 cmap [] _ = []
 cmap (ca:co) x = (ca x):(cmap co x)
 --N--
-finding _ [] x=x 
+
 findlist sl l = finding sl l 0
+finding :: [Int]->[Int]->Int->Int
+finding _ [] x=-1
 finding (ca1:co1) (ca2:co2) x
-    |ca1==ca2 = subfinding co1 co2
-    |otherwise = finding (ca1:co1) co2 (x+1)
+    |ca1/=ca2 = finding (ca1:co1) co2 (x+1)
+    |subfinding co1 co2 = x
 --subfinding verifica que encontré la sublista y no el primer elemento nada mas
-subfinding _ [] = True
+subfinding [] _ = True
+subfinding [] []
 subfinding (ca1:co1) (ca2:co2)
     |ca1==ca2 = subfinding co1 co2
     |otherwise = False
-

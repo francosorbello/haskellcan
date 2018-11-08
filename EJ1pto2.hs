@@ -26,7 +26,11 @@ my_elem e [] = False
 my_elem e (ca:co)
     |e==ca = True
     |otherwise = my_elem e co
---E--
+--H--
 
+intercala2 x []=[[x]]
+intercala2 x l@(lh:lt)=(x:l) : [lh:z|z <- intercala2 x lt]
 
+permutaciones2 []=[[]]
+permutaciones2 (lh:lt)=concat [intercala2 lh z| z<- permutaciones2 lt]
 
